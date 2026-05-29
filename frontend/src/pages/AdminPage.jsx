@@ -36,13 +36,12 @@ const AdminPage = () => {
     try {
       const token = localStorage.getItem('token');
       const config = { headers: { Authorization: `Bearer ${token}` } };
-      
-      // ✅ FIX 1: Route മാറ്റി - /api/blogs/admin/blogs ആക്കി
-      const blogsRes = await axios.get('http://localhost:5000/api/blogs/admin/blogs', config);
+
+      const blogsRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/blogs/admin/blogs`, config);
       setAllBlogs(blogsRes.data);
       
-      // ✅ FIX 2: Route മാറ്റി - /api/blogs/admin/users ആക്കി  
-      const usersRes = await axios.get('http://localhost:5000/api/blogs/admin/users', config);
+      
+      const usersRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/blogs/admin/users', config);
       setAllUsers(usersRes.data);
       
       setLoading(false);
@@ -60,7 +59,7 @@ const AdminPage = () => {
     if (window.confirm('Do you want to delete this blog for permanently')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:5000/api/blogs/admin/blogs/${id}`, {
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/blogs/admin/blogs/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setAllBlogs(allBlogs.filter(blog => blog._id !== id));
@@ -79,7 +78,7 @@ const AdminPage = () => {
   const handleEditSave = async () => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/blogs/admin/blogs/${editBlog._id}`, editBlog, {
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/blogs/admin/blogs/${editBlog._id}`, editBlog, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setEditDialog(false);
@@ -94,7 +93,7 @@ const AdminPage = () => {
     if (window.confirm('Do you want to delete this,confirm?')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:5000/api/blogs/admin/users/${id}`, {
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/blogs/admin/users/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setAllUsers(allUsers.filter(user => user._id !== id));
