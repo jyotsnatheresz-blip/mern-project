@@ -8,17 +8,17 @@ const Createblog = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('Tech');
-  const [image, setImage] = useState(null); // <-- File object store ചെയ്യാൻ മാറ്റി
+  const [image, setImage] = useState(null); 
   const [preview, setPreview] = useState('');
   const navigate = useNavigate();
 
-  // Image select ചെയ്താൽ - Change 1
+  // Image select  - Change 1
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    setImage(file); // <-- File object നേരെ set ചെയ്യുന്നു, Base64 വേണ്ട
+    setImage(file); 
 
     if (file) {
-      setPreview(URL.createObjectURL(file)); // Preview അതേപോലെ work ആവും
+      setPreview(URL.createObjectURL(file));
     }
   };
 
@@ -27,24 +27,24 @@ const Createblog = () => {
     e.preventDefault();
 
     if (!title ||!content) {
-      alert('Title ഉം Content ഉം must ആണ് മച്ചാനേ');
+      alert('Give a title and a content');
       return;
     }
 
     try {
       const token = localStorage.getItem('token');
 
-      // FormData use ചെയ്യണം - multer-ന് വേണ്ടി
+     
       const formData = new FormData();
       formData.append('title', title);
       formData.append('content', content);
       formData.append('category', category);
       if (image) {
-        formData.append('image', image); // <-- key 'image' backend multer-ൽ ഉള്ളത് തന്നെ ആവണം
+        formData.append('image', image); 
       }
 
-      await axios.post('http://localhost:5000/api/blogs', // <-- നിന്റെ port check ചെയ്യ് 3000 ആണോ 5000 ആണോ
-        formData, // <-- JSON അല്ല, FormData ആണ്
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/blogs`,
+        formData, 
         {
           headers: {
 
@@ -57,7 +57,7 @@ const Createblog = () => {
       navigate('/');
     } catch (error) {
       console.log(error);
-      alert('Blog create ചെയ്യാൻ പറ്റിയില്ല 🥲');
+      alert('Failed to create blog');
     }
   };
 
@@ -66,7 +66,7 @@ const Createblog = () => {
   const brownDark = '#5D4037';
   const brownLight = '#A1887F';
 
-  // ബാക്കി UI അതേപോലെ തന്നെ, ഒന്നും മാറ്റണ്ട
+ 
   return (
     <Box sx={{
       minHeight: '90vh',
