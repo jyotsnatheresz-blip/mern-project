@@ -13,7 +13,7 @@ const Signup = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
 
-  // Brown Color Palette - Login-ന്റെ അതേ
+
   const brownMain = '#8B5A2B';
   const brownDark = '#5D4037';
   const brownLight = '#A1887F';
@@ -22,7 +22,7 @@ const Signup = () => {
     e.preventDefault();
 
     if (!name || !email || !password || !confirmPassword) {
-      alert('എല്ലാ fields-ഉം fill ചെയ്യ് മച്ചാനേ');
+      alert('fill the all fields');
       return;
     }
 
@@ -37,14 +37,14 @@ const Signup = () => {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/signup', {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/signup`, {
         name,
         email,
         password
       });
       
       alert('Signup successfully completed! now do Login');
-      navigate('/login'); // Login page-ലേക്ക് വിട്
+      navigate('/login'); 
     } catch (error) {
       console.log(error);
       alert(error.response?.data?.message || 'Signup failed. Try again!');
