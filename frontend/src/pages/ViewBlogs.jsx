@@ -19,7 +19,7 @@ const ViewBlogs = () => {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/blogs'); // നിന്റെ backend route
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/blogs`); 
       setBlogs(res.data);
       setLoading(false);
     } catch (error) {
@@ -80,7 +80,7 @@ const ViewBlogs = () => {
                   <CardMedia
                     component="img"
                     height="180"
-                    image={`http://localhost:5000/uploads/${blog.image}`}
+                    image={`${process.env.REACT_APP_API_URL}/uploads/${blog.image}`}
                     alt={blog.title}
                     sx={{ objectFit: 'cover' }}
                   />
@@ -142,7 +142,7 @@ const ViewBlogs = () => {
                   <Button
                     variant="contained"
                     size="small"
-                    onClick={() => navigate(`/blog/${blog._id}`)} // Single blog page-ലേക്ക്
+                    onClick={() => navigate(`/blog/${blog._id}`)} 
                     sx={{
                       alignSelf: 'flex-start',
                       background: `linear-gradient(45deg, ${brownMain}, ${brownDark})`,
