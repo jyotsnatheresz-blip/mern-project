@@ -9,7 +9,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/blogs')
+    axios.get(`${process.env.REACT_APP_API_URL}/api/blogs`)
       .then(res => {
         setBlogs(res.data);
         console.log("Blogs:", res.data);
@@ -37,7 +37,7 @@ const Home = () => {
 
       <Grid container spacing={4}>
         {blogs.map(blog => (
-          // ✅ FIX 1: Grid size മാറ്റി - md={2} → md={4} ആക്കി
+    
           <Grid item xs={9} sm={6} md={4} key={blog._id}>
             <Card 
               sx={{ 
@@ -57,7 +57,7 @@ const Home = () => {
                   <CardMedia
                     component="img"
                     height="180"
-                    image={`http://localhost:5000/uploads/${blog.image}`}
+                    image={`${process.env.REACT_APP_API_URL}/uploads/${blog.image}`}
                     alt={blog.title}
                     sx={{ objectFit: 'cover' }}
                   />
@@ -99,7 +99,7 @@ const Home = () => {
 
                 <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
                   <Avatar sx={{ width: 32, height: 32, mr: 1 }} src={blog?.userId?.name?.charAt(0)|| 'U'} />
-                  {/* ✅ FIX 2: userid → userId ആക്കി */}
+              
                   <Typography variant="subtitle2">
                     {blog.userId?.name || 'Deleted User'}
                   </Typography>
