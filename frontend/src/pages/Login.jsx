@@ -24,18 +24,18 @@ const Login = () => {
     }
 
     try {
-      // ഇവിടെ /api/auth/login ആക്കി മാറ്റി ✅
-      const res = await axios.post('http://localhost:5000/api/auth/login', {
+      
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, {
         email,
         password
       });
       
-      // Token + User data save ചെയ്യുക
+      
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user));
       
       alert('Login Success!');
-      navigate('/'); // Home page-ലേക്ക്
+      navigate('/'); // Home page
     } catch (error) {
       console.log(error);
       alert(error.response?.data?.message || 'Login failed. Check credentials!');
