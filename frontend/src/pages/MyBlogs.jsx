@@ -24,11 +24,11 @@ const MyBlogs = () => {
   const fetchMyBlogs = async () => {
     try {
       const token = localStorage.getItem('token');
-      const user = JSON.parse(localStorage.getItem('user')); // Login-ൽ save ചെയ്ത user data
+      const user = JSON.parse(localStorage.getItem('user')); 
       setUsername(user?.name || 'User');
       
-      const res = await axios.get('http://localhost:5000/api/blogs/myblogs', {
-        headers: { Authorization: `Bearer ${token}` } // Token അയക്കണം
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/blogs/myblogs`, {
+        headers: { Authorization: `Bearer ${token}` } 
       });
       setMyBlogs(res.data);
       setLoading(false);
@@ -46,7 +46,7 @@ const MyBlogs = () => {
     if (window.confirm('Are you sure?')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:5000/api/blogs/${id}`, {
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/blogs/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         alert('Blog Deleted🗑️');
