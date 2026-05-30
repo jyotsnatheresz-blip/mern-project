@@ -41,7 +41,7 @@ const AdminPage = () => {
       setAllBlogs(blogsRes.data);
       
       
-      const usersRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/blogs/admin/users', config);
+      const usersRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/blogs/admin/users`, config);
       setAllUsers(usersRes.data);
       
       setLoading(false);
