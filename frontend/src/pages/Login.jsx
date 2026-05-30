@@ -19,7 +19,7 @@ const Login = () => {
     e.preventDefault();
 
     if (!email || !password) {
-      alert('Email ഉം Password ഉം must ആണ് മച്ചാനേ');
+      alert(' Give a Email and Password ');
       return;
     }
 
