@@ -158,7 +158,7 @@ const MyBlogs = () => {
                   <CardMedia
                     component="img"
                     height="200"
-                    image={`http://localhost:5000/uploads/${blog.image}`}
+                    image={`${process.env.REACT_APP_API_URL}/uploads/${blog.image}`}
                     alt={blog.title}
                     sx={{ objectFit: 'cover' }}
                   />
