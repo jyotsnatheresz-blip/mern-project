@@ -19,7 +19,7 @@ const ViewBlogs = () => {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/blogs`); 
+      const res = await axios.get(`https://mern-project-backend-jm72.onrender.com/api/blogs`); 
       setBlogs(res.data);
       setLoading(false);
     } catch (error) {
@@ -80,7 +80,7 @@ const ViewBlogs = () => {
                   <CardMedia
                     component="img"
                     height="180"
-                    image={`${process.env.REACT_APP_API_URL}/uploads/${blog.image}`}
+                    image={`https://mern-project-backend-jm72.onrender.com/uploads/${blog.image}`}
                     alt={blog.title}
                     sx={{ objectFit: 'cover' }}
                   />
