@@ -14,30 +14,41 @@ function EditBlog() {
       .catch(err => console.log(err));
   }, [id]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      await axios.put(`https://mern-project-backend-jm72.onrender.com/api/blogs/${id}`, blog);
-      navigate('/u'); // MyBlogs page-ലേക്ക്
-    } catch (err) {
-      console.log(err);
-      alert('Update Failed. Check Console');
-    }
-    setLoading(false);
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  try {
+    const token = localStorage.getItem('token');
+    
+    await axios.put(
+      `https://mern-project-backend-jm72.onrender.com/api/blogs/${id}`, 
+      blog,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}` 
+        }
+      }
+    );
+    
+    navigate('/u'); 
+  } catch (err) {
+    console.log(err);
+    alert('Update Failed. Are you logged in?');
+  }
+  setLoading(false);
+};
 
   const styles = {
     container: {
       minHeight: '100vh',
-      backgroundColor: '#1a120b', // Dark Brown BG
+      backgroundColor: '#1a120b', 
       padding: '40px 20px',
       fontFamily: 'system-ui',
     },
     card: {
       maxWidth: '700px',
       margin: '0 auto',
-      backgroundColor: '#3c2a21', // Medium Brown Card
+      backgroundColor: '#3c2a21', 
       padding: '40px',
       borderRadius: '12px',
       boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
@@ -87,7 +98,7 @@ function EditBlog() {
     button: {
       width: '100%',
       padding: '14px',
-      backgroundColor: '#b85c38', // Burnt Orange/Brown
+      backgroundColor: '#b85c38', 
       color: 'white',
       border: 'none',
       borderRadius: '8px',
