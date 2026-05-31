@@ -14,6 +14,7 @@ import UserPage from './pages/MyBlogs'
 import AdminPage from './pages/AdminPage'
 import MyBlogs from './pages/MyBlogs'
 import ViewBlog from './pages/ViewBlog'
+import EditBlog from './pages/EditBlog'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -30,7 +31,8 @@ function App() {
           <Route path ="/b" element={<ViewBlogs/>}/>
           <Route path ="/u" element={<MyBlogs/>}/>
           <Route path ="/d" element={<AdminPage/>}/>
-          <Route path="/blog/:id" element={<ViewBlog/>}/> 
+          <Route path="/blog/:id" element={<ViewBlog/>}/>
+          <Route path="/edit/:id" element={<EditBlog/>}/>
         </Routes>
     
     </div>
