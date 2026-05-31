@@ -4,12 +4,17 @@ import { useState, useEffect } from 'react';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token);
-  }, []);
+    if(token) {
+    setIsLoggedIn(true);
+    } else {
+    setIsLoggedIn(false);
+    }
+  }, [location]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
