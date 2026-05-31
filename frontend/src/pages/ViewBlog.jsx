@@ -7,7 +7,7 @@ function ViewBlog() {
   const [blog, setBlog] = useState(null);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/blogs/${id}`)
+    axios.get(`https://mern-project-backend-jm72.onrender.com/api/blogs/${id}`)
      .then(res => setBlog(res.data))
      .catch(err => console.log("Blog kittiyilla:", err));
   }, [id]);
@@ -19,7 +19,7 @@ function ViewBlog() {
       <h1>{blog.title}</h1>
       <h3>Category: {blog.category}</h3>
       {blog.image && <img 
-        src={`${process.env.REACT_APP_API_URL}/uploads/${blog.image}`} 
+        src={`https://mern-project-backend-jm72.onrender.com/uploads/${blog.image}`} 
         alt={blog.title} 
         style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }} 
       />}
