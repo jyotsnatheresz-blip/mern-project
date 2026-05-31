@@ -11,7 +11,7 @@ const blogRoutes = require('./routes/blog');
 const app = express();
 
 // Middleware
-app.use(cors({origin: process.env.FRONTEND_URL}));
+app.use(cors({'https://mern-project-navy-one.vercel.app'}));
 app.use(express.json());
 app.use('/uploads',express.static(path.join(__dirname,'uploads')));
 // Routes
