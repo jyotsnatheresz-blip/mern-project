@@ -43,7 +43,7 @@ const Createblog = () => {
         formData.append('image', image); 
       }
 
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/blogs`,
+      await axios.post(`https://mern-project-backend-jm72.onrender.com/api/blogs`,
         formData, 
         {
           headers: {
