@@ -35,7 +35,7 @@ const Signup = () => {
       alert('Enter minimum 6 letters');
       return;
     }
-
+       console.log("API URL:",process.env.REACT_APP_API_URL);
     try {
       const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/signup`, {
         name,
