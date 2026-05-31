@@ -37,11 +37,11 @@ const AdminPage = () => {
       const token = localStorage.getItem('token');
       const config = { headers: { Authorization: `Bearer ${token}` } };
 
-      const blogsRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/blogs/admin/blogs`, config);
+      const blogsRes = await axios.get(`https://mern-project-backend-jm72.onrender.com/api/blogs/admin/blogs`, config);
       setAllBlogs(blogsRes.data);
       
       
-      const usersRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/blogs/admin/users`, config);
+      const usersRes = await axios.get(`https://mern-project-backend-jm72.onrender.com/api/blogs/admin/users`, config);
       setAllUsers(usersRes.data);
       
       setLoading(false);
@@ -59,7 +59,7 @@ const AdminPage = () => {
     if (window.confirm('Do you want to delete this blog for permanently')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`${process.env.REACT_APP_API_URL}/api/blogs/admin/blogs/${id}`, {
+        await axios.delete(`https://mern-project-backend-jm72.onrender.com/api/blogs/admin/blogs/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setAllBlogs(allBlogs.filter(blog => blog._id !== id));
@@ -78,7 +78,7 @@ const AdminPage = () => {
   const handleEditSave = async () => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`${process.env.REACT_APP_API_URL}/api/blogs/admin/blogs/${editBlog._id}`, editBlog, {
+      await axios.put(`https://mern-project-backend-jm72.onrender.com/api/blogs/admin/blogs/${editBlog._id}`, editBlog, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setEditDialog(false);
@@ -93,7 +93,7 @@ const AdminPage = () => {
     if (window.confirm('Do you want to delete this,confirm?')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`${process.env.REACT_APP_API_URL}/api/blogs/admin/users/${id}`, {
+        await axios.delete(`https://mern-project-backend-jm72.onrender.com/api/blogs/admin/users/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setAllUsers(allUsers.filter(user => user._id !== id));
