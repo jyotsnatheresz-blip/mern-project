@@ -27,7 +27,7 @@ const MyBlogs = () => {
       const user = JSON.parse(localStorage.getItem('user')); 
       setUsername(user?.name || 'User');
       
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/blogs/myblogs`, {
+      const res = await axios.get(`https://mern-project-backend-jm72.onrender.com/api/blogs/myblogs`, {
         headers: { Authorization: `Bearer ${token}` } 
       });
       setMyBlogs(res.data);
@@ -46,7 +46,7 @@ const MyBlogs = () => {
     if (window.confirm('Are you sure?')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`${process.env.REACT_APP_API_URL}/api/blogs/${id}`, {
+        await axios.delete(`https://mern-project-backend-jm72.onrender.com/api/blogs/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         alert('Blog Deleted🗑️');
@@ -158,7 +158,7 @@ const MyBlogs = () => {
                   <CardMedia
                     component="img"
                     height="200"
-                    image={`${process.env.REACT_APP_API_URL}/uploads/${blog.image}`}
+                    image={`https://mern-project-backend-jm72.onrender.com/uploads/${blog.image}`}
                     alt={blog.title}
                     sx={{ objectFit: 'cover' }}
                   />
