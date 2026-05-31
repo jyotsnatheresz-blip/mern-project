@@ -9,7 +9,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/blogs`)
+    axios.get(`https://mern-project-backend-jm72.onrender.com/api/blogs`)
       .then(res => {
         setBlogs(res.data);
         console.log("Blogs:", res.data);
@@ -57,7 +57,7 @@ const Home = () => {
                   <CardMedia
                     component="img"
                     height="180"
-                    image={`${process.env.REACT_APP_API_URL}/uploads/${blog.image}`}
+                    image={`https://mern-project-backend-jm72.onrender.com/uploads/${blog.image}`}
                     alt={blog.title}
                     sx={{ objectFit: 'cover' }}
                   />
