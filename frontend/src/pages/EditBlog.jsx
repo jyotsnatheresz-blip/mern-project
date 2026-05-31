@@ -10,7 +10,10 @@ function EditBlog() {
 
   useEffect(() => {
     axios.get(`https://mern-project-backend-jm72.onrender.com/api/blogs/${id}`)
-      .then(res => setBlog(res.data))
+      .then(res => {
+        setBlog(res.data);
+        setLoading(false);
+      })
       .catch(err => console.log(err));
   }, [id]);
 
@@ -23,6 +26,11 @@ const handleSubmit = async (e) => {
     await axios.put(
       `https://mern-project-backend-jm72.onrender.com/api/blogs/${id}`, 
       blog,
+      {
+        title:blog.title,
+        content:blog.content,
+        image:blog.image
+      },
       {
         headers: {
           'Authorization': `Bearer ${token}` 
