@@ -20,7 +20,7 @@ function EditBlog() {
   };
 
   return (
-    <div style={{padding: '20px'}}>
+    <div style={{padding: '50px'}}>
       <h2>Edit Blog</h2>
       <form onSubmit={handleSubmit}>
         <input 
