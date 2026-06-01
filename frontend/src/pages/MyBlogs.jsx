@@ -92,9 +92,9 @@ const MyBlogs = () => {
           <Typography variant="h5" sx={{ color: brownLight, mb: 2 }}>
             If you haven't created blog yet,do it right now!
           </Typography>
-          <Button
+          <Button 
             variant="contained"
-            onClick={() => navigate('/create')}
+            onClick={() => navigate('/c')}
             sx={{
               mt: 2,
               py: 1.5,
